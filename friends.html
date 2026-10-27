@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Friends · PiQueueBall</title>
+  <link rel="icon" href="assets/logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="offline.js" defer></script>
+  <script src="page-transitions.js" defer></script>
+  <script src="supabase-config.js" defer></script>
+  <script src="supabase-client.js" defer></script>
+  <script src="auth-guard.js" defer></script>
+  <script src="auth-ui.js" defer></script>
+  <script src="friends.js" defer></script>
+</head>
+<body>
+  <main class="screen queue-screen friends-screen">
+    <header class="hero queue-hero">
+      <span class="circle c1"></span><span class="circle c2"></span>
+      <small>PiQueueBall</small>
+      <h1>Friends</h1>
+      <p>Connect with players and bring them into a match.</p>
+    </header>
+    <div class="account-bar"><span id="account-email"></span><button id="sign-out" type="button">Sign out</button></div>
+
+    <section class="queue-panel tracker-page-panel" aria-labelledby="add-friend-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">FIND PLAYERS</p>
+          <h2 id="add-friend-title">Find a player</h2>
+        </div>
+      </div>
+      <p class="profile-help">Search by the email address they use for their PiQueueBall account.</p>
+      <form class="friend-form" id="friend-form">
+        <label class="visually-hidden" for="friend-email">Friend's account email</label>
+        <input id="friend-email" type="email" placeholder="Friend's account email" autocomplete="email" required>
+        <button class="btn add-button" type="submit">Find and add player</button>
+      </form>
+      <button class="btn secondary-button add-self-button" id="add-self" type="button">Add my player profile to queue</button>
+      <p class="queue-status" id="friends-status" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="queue-panel tracker-page-panel" aria-labelledby="requests-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">PENDING</p>
+          <h2 id="requests-title">Friend requests</h2>
+        </div>
+      </div>
+      <ul class="friend-list" id="request-list"></ul>
+      <p class="tracker-empty" id="empty-requests">No pending friend requests.</p>
+    </section>
+
+    <section class="queue-panel tracker-page-panel" aria-labelledby="friends-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">YOUR NETWORK</p>
+          <h2 id="friends-title">Friends</h2>
+        </div>
+        <span class="roster-count" id="friends-count">0 friends</span>
+      </div>
+      <ul class="friend-list" id="friend-list"></ul>
+      <p class="tracker-empty" id="empty-friends">Your accepted friends will appear here.</p>
+    </section>
+
+    <nav class="nav" aria-label="Main">
+      <a href="home.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Queue</a>
+      <a href="score.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8v4a4 4 0 0 1-8 0zM8 6H5v2a4 4 0 0 0 4 4m7-6h3v2a4 4 0 0 1-4 4m-3 0v5m-4 3h8m-7-3h6"/></svg>Scores</a>
+      <a href="totals.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V11h4v9m4 0V4h4v16m4 0v-6h4v6M2 20h20"/></svg>Totals</a>
+      <a href="results.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h8l4 4v14H5V3zm8 1v4h4m-10 4h8m-8 4h5"/></svg>Results</a>
+      <a href="profiles.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Profiles</a>
+      <a class="active" href="friends.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2m6-10a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm7-7.5a4 4 0 0 1 0 7.8M20 15a4 4 0 0 1 2 3.5V21"/></svg>Friends</a>
+    </nav>
+  </main>
+</body>
+</html>

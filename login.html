@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Log in · PiQueueBall</title>
+  <link rel="icon" href="assets/logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="offline.js" defer></script>
+  <script src="page-transitions.js" defer></script>
+  <script src="supabase-config.js" defer></script>
+  <script src="supabase-client.js" defer></script>
+  <script src="auth-guard.js" defer></script>
+  <script src="auth-pages.js" defer></script>
+</head>
+<body>
+  <main class="screen green">
+    <span class="circle c1"></span><span class="circle c2"></span>
+    <span class="circle c3"></span><span class="circle c4"></span>
+    <div class="signup">
+      <h2>Log in to PiQueueBall</h2>
+      <form class="form-card" id="login-form">
+        <label for="login-email">Email:</label>
+        <input id="login-email" type="email" autocomplete="email" required>
+        <label for="login-password">Password:</label>
+        <input id="login-password" type="password" autocomplete="current-password" required>
+        <div class="row"><button class="btn small" type="submit">Log in</button></div>
+      </form>
+      <p class="queue-status" id="auth-status" role="status" aria-live="polite"></p>
+      <a class="back" href="signup.html">Need an account? Sign up</a>
+    </div>
+  </main>
+</body>
+</html>

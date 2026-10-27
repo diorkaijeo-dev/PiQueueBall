@@ -1,0 +1,20 @@
+{
+  "name": "piqueueball",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PiQueueBall Android wrapper and web asset tooling",
+  "scripts": {
+    "copy-web": "node scripts/copy-web-assets.js",
+    "android:sync": "npm run copy-web && cap sync android",
+    "android:apk": "npm run android:sync && cd android && gradlew.bat assembleDebug && cd .. && node scripts/rename-apk.js",
+    "ios:sync": "npm run copy-web && cap sync ios"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.5.3",
+    "@capacitor/core": "^8.5.3",
+    "@capacitor/ios": "^8.5.3"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.5.3"
+  }
+}

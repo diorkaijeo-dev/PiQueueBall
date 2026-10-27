@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">PiQueueBall</string>
+    <string name="title_activity_main">PiQueueBall</string>
+    <string name="package_name">com.example.piqueueball</string>
+    <string name="custom_url_scheme">com.example.piqueueball</string>
+</resources>

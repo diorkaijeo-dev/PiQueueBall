@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign up · PiQueueBall</title>
+  <link rel="icon" href="assets/logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="offline.js" defer></script>
+  <script src="page-transitions.js" defer></script>
+  <script src="supabase-config.js" defer></script>
+  <script src="supabase-client.js" defer></script>
+  <script src="auth-guard.js" defer></script>
+  <script src="auth-pages.js" defer></script>
+</head>
+<body>
+  <main class="screen green">
+    <span class="circle c1"></span><span class="circle c2"></span>
+    <span class="circle c3"></span><span class="circle c4"></span>
+    <div class="signup">
+      <h2>Create your PiQueueBall account</h2>
+      <form class="form-card" id="signup-form">
+        <label for="signup-name">Player name:</label>
+        <input id="signup-name" type="text" maxlength="40" autocomplete="nickname" required>
+        <label for="signup-email">Email:</label>
+        <input id="signup-email" type="email" autocomplete="email" required>
+        <label for="signup-password">Password:</label>
+        <input id="signup-password" type="password" minlength="8" autocomplete="new-password" required>
+        <div class="row"><button class="btn small" type="submit">Create account</button></div>
+      </form>
+      <p class="queue-status" id="auth-status" role="status" aria-live="polite"></p>
+      <button class="btn small" id="resend-confirmation" type="button" hidden>Resend confirmation email</button>
+      <a class="back" href="login.html">Already registered? Log in</a>
+    </div>
+  </main>
+</body>
+</html>

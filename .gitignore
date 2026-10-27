@@ -1,0 +1,11 @@
+node_modules/
+www/
+
+# Local editor and operating-system files
+.DS_Store
+Thumbs.db
+
+# Local Android SDK configuration and signing credentials
+android/local.properties
+*.jks
+*.keystore

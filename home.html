@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Queue · PiQueueBall</title>
+  <link rel="icon" href="assets/logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="offline.js" defer></script>
+  <script src="page-transitions.js" defer></script>
+  <script src="supabase-config.js" defer></script>
+  <script src="supabase-client.js" defer></script>
+  <script src="auth-guard.js" defer></script>
+  <script src="online-sync.js" defer></script>
+  <script src="auth-ui.js" defer></script>
+  <script src="queue.js" defer></script>
+</head>
+<body>
+  <main class="screen queue-screen queue-home-screen">
+    <header class="hero queue-hero">
+      <span class="circle c1"></span><span class="circle c2"></span>
+      <small>PiQueueBall</small>
+      <h1>Court Queue</h1>
+      <p>Build a fair match rotation with your players.</p>
+    </header>
+    <div class="account-bar"><span id="account-email"></span><button id="sign-out" type="button">Sign out</button></div>
+
+    <section class="queue-panel" id="queue">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">PLAYER ROSTER</p>
+          <h2>Who's playing?</h2>
+        </div>
+        <span class="roster-count" id="roster-count">0 players</span>
+      </div>
+
+      <form class="add-player-form" id="add-player-form">
+        <label class="visually-hidden" for="player-name">Player name</label>
+        <input id="player-name" name="playerName" maxlength="254" placeholder="Enter a name or registered email" autocomplete="off" required>
+        <button class="btn add-button" type="submit">Add player</button>
+      </form>
+
+      <ul class="player-list" id="player-list" aria-label="Players in the queue"></ul>
+      <p class="empty-roster" id="empty-roster">Add at least two players to set up a singles match, or four for doubles.</p>
+
+      <div class="rotation-tools">
+        <button class="btn secondary-button" id="jumble-button" type="button">Jumble queue</button>
+        <span class="fairness-note" id="fairness-note">Players take turns before anyone gets a second game.</span>
+      </div>
+
+      <fieldset class="mode-picker">
+        <legend>Game format</legend>
+        <label class="mode-option">
+          <input type="radio" name="mode" value="singles" checked>
+          <span><b>Singles</b><small>2 players</small></span>
+        </label>
+        <label class="mode-option">
+          <input type="radio" name="mode" value="doubles">
+          <span><b>Doubles</b><small>4 players</small></span>
+        </label>
+      </fieldset>
+
+      <label class="partner-option" id="partner-option">
+        <input id="same-partner" type="checkbox">
+        <span class="toggle-mark" aria-hidden="true"></span>
+        <span><b>Stay with same partner</b><small>Keep partners together; rotate opposing teams.</small></span>
+      </label>
+
+      <div class="partner-picker" id="partner-picker" hidden>
+        <div>
+          <p class="picker-title">Choose your own partner</p>
+          <p class="picker-help">Pick yourself and the player you want on your team.</p>
+        </div>
+        <label for="your-player">I am</label>
+        <select id="your-player">
+          <option value="">Choose your name</option>
+        </select>
+        <label for="chosen-partner">My partner</label>
+        <select id="chosen-partner">
+          <option value="">Choose a partner</option>
+        </select>
+        <button class="btn secondary-button save-partner-button" id="save-partner" type="button">Save partner choice</button>
+        <p class="saved-partner" id="saved-partner" aria-live="polite"></p>
+      </div>
+
+      <div class="match-card" aria-live="polite">
+        <div class="section-heading match-heading">
+          <div>
+            <p class="eyebrow" id="match-eyebrow">UP NEXT</p>
+            <h2 id="match-title">Match preview</h2>
+          </div>
+          <span class="match-format" id="match-format">Singles</span>
+        </div>
+        <div class="match-teams" id="match-teams"></div>
+        <div class="mini-stats" id="match-stats" hidden></div>
+        <p class="match-message" id="match-message">Add players to create your first match.</p>
+        <button class="btn dark start-button" id="start-match" type="button" disabled>Start match</button>
+      </div>
+      <p class="queue-status" id="queue-status" role="status" aria-live="polite"></p>
+    </section>
+
+    <nav class="nav" aria-label="Main">
+      <a class="active" href="home.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Queue</a>
+      <a href="score.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8v4a4 4 0 0 1-8 0zM8 6H5v2a4 4 0 0 0 4 4m7-6h3v2a4 4 0 0 1-4 4m-3 0v5m-4 3h8m-7-3h6"/></svg>Scores</a>
+      <a href="totals.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V11h4v9m4 0V4h4v16m4 0v-6h4v6M2 20h20"/></svg>Totals</a>
+      <a href="results.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h8l4 4v14H5V3zm8 1v4h4m-10 4h8m-8 4h5"/></svg>Results</a>
+      <a href="profiles.html"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Profiles</a>
+      <a href="friends.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2m6-10a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm7-7.5a4 4 0 0 1 0 7.8M20 15a4 4 0 0 1 2 3.5V21"/></svg>Friends</a>
+    </nav>
+  </main>
+</body>
+</html>
